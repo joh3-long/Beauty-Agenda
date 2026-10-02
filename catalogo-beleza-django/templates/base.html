@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Agenda de Beleza{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="cabecalho">
+    <div class="container nav">
+        <a class="logo" href="{% url 'lista_servicos' %}">✨ Agenda de Beleza</a>
+        {% if user.is_authenticated %}
+        <nav>
+            <span>Olá, {{ user.username }}!</span>
+            <a href="{% url 'adicionar_servico' %}">Adicionar</a>
+            <form method="post" action="{% url 'logout' %}" class="inline-form">
+                {% csrf_token %}
+                <button class="link-button" type="submit">Sair</button>
+            </form>
+        </nav>
+        {% endif %}
+    </div>
+</header>
+
+<main class="container">
+    {% for message in messages %}
+        <div class="mensagem">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

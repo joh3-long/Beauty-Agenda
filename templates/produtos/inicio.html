@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beauty Agenda</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>💄 Beauty Agenda</h1>
+
+        <p>
+            Organize seus produtos de beleza
+        </p>
+    </header>
+
+    <main>
+
+        <div class="topo">
+
+            <h2>Meus produtos</h2>
+
+            <a href="{% url 'cadastrar_produto' %}" class="botao">
+                + Cadastrar produto
+            </a>
+
+        </div>
+
+        <section class="produtos">
+
+            {% for produto in produtos %}
+
+                <div class="card">
+
+                    <h3>{{ produto.nome }}</h3>
+
+                    <p>
+                        <strong>Marca:</strong>
+                        {{ produto.marca }}
+                    </p>
+
+                    <p>
+                        <strong>Categoria:</strong>
+                        {{ produto.get_categoria_display }}
+                    </p>
+
+                    <p>
+                        <strong>Preço:</strong>
+                        R$ {{ produto.preco }}
+                    </p>
+
+                    {% if produto.descricao %}
+                        <p>
+                            {{ produto.descricao }}
+                        </p>
+                    {% endif %}
+
+                </div>
+
+            {% empty %}
+
+                <div class="vazio">
+
+                    <h3>✨ Nenhum produto cadastrado</h3>
+
+                    <p>
+                        Cadastre seu primeiro produto de beleza!
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
