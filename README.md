@@ -28,7 +28,7 @@ Para executar o projeto, é necessário ter instalado:
 No Git Bash, execute:
 
 ```bash
-(https://github.com/joh3-long/Beauty-Agenda.git)
+https://github.com/joh3-long/Beauty-Agenda.git
 ```
 
 Depois, entre na pasta do projeto:
